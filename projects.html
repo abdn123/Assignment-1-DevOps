@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Projects</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Projects</h1>
+  </header>
+
+  <main>
+    <section id="projects">
+      <h2>My Projects</h2>
+      <input type="text" id="filterInput" placeholder="Filter by technology">
+      <ul id="projectList">
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    const projects = [
+      { name: 'Diary Management System', technology: 'C++' },
+      { name: 'Stadium Management System', technology: 'REACT NATIVE' },
+      { name: 'Chess Game', technology: 'C++' },
+      { name: 'Rent a Car', technology: 'FLUTTER' },
+      { name: 'Tic Tac Toe', technology: 'JAVA' },
+      { name: 'Server Load Balancer', technology: 'PYTHON' }
+    ];
+
+    function displayProjects(filterValue = '') {
+      const projectList = document.getElementById('projectList');
+      projectList.innerHTML = '';
+
+      const filteredProjects = projects.filter(project =>
+        project.technology.toLowerCase().includes(filterValue.toLowerCase())
+      );
+
+      filteredProjects.forEach(project => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${project.name} - ${project.technology}`;
+        projectList.appendChild(listItem);
+      });
+    }
+
+    document.getElementById('filterInput').addEventListener('input', function() {
+      displayProjects(this.value);
+    });
+
+    // Initial display of all projects
+    displayProjects();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
